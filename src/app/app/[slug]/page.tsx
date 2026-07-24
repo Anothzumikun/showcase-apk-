@@ -8,6 +8,8 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { Badge } from "@/components/ui/badge";
 import { formatCount } from "@/lib/utils";
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {
@@ -54,7 +56,6 @@ export default async function AppDetailPage({ params }: { params: { slug: string
         <p className="mt-6 text-sm leading-relaxed text-slate-400">{app.description}</p>
       )}
 
-      {/* Info grid */}
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <InfoCell icon={<Tag className="h-4 w-4" />} label="Versi" value={app.version ?? "-"} />
         <InfoCell icon={<HardDrive className="h-4 w-4" />} label="Ukuran" value={app.size ?? "-"} />
@@ -62,7 +63,6 @@ export default async function AppDetailPage({ params }: { params: { slug: string
         <InfoCell icon={<Smartphone className="h-4 w-4" />} label="Kategori" value={app.category?.name ?? "-"} />
       </div>
 
-      {/* Mod info */}
       {app.mod_info.length > 0 && (
         <div className="mt-8 rounded-xl2 border border-surface-border bg-surface/60 p-5">
           <h2 className="font-display text-sm font-semibold text-white">Fitur Rilis Ini</h2>
@@ -77,7 +77,6 @@ export default async function AppDetailPage({ params }: { params: { slug: string
         </div>
       )}
 
-      {/* Download button */}
       <div className="mt-8 flex justify-center">
         <DownloadButton
           appId={app.id}
@@ -87,7 +86,6 @@ export default async function AppDetailPage({ params }: { params: { slug: string
         />
       </div>
 
-      {/* Device mockup screenshots */}
       {app.screenshots.length > 0 && (
         <div className="mt-12">
           <h2 className="mb-6 text-center font-display text-sm font-semibold text-white">
@@ -97,7 +95,6 @@ export default async function AppDetailPage({ params }: { params: { slug: string
         </div>
       )}
 
-      {/* FAQ */}
       {faqs.length > 0 && (
         <div className="mt-12">
           <h2 className="mb-2 font-display text-sm font-semibold text-white">
