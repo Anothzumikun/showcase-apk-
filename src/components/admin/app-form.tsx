@@ -27,6 +27,7 @@ export interface AppFormValues {
   category_id: string;
   status: AppStatus;
   download_url: string;
+  download_count: number;
   mod_info: string[];
   requirements: string;
   featured: boolean;
@@ -46,6 +47,7 @@ const emptyValues: AppFormValues = {
   category_id: "",
   status: "draft",
   download_url: "",
+  download_count: 0,
   mod_info: [],
   requirements: "",
   featured: false,
@@ -161,6 +163,16 @@ export function AppForm({
               <Label>Developer</Label>
               <Input value={values.developer} onChange={(e) => set("developer", e.target.value)} />
             </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label>Jumlah Unduhan (bisa diedit manual)</Label>
+            <Input
+              type="number"
+              min={0}
+              value={values.download_count}
+              onChange={(e) => set("download_count", Number(e.target.value) || 0)}
+            />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
